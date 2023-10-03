@@ -1,29 +1,28 @@
-﻿namespace WritingMaintainableUnitTests.Module1TypesOfTests.CascadingFailure
+﻿namespace WritingMaintainableUnitTests.Module1TypesOfTests.CascadingFailure;
+
+public class AuthorizationService
 {
-    public class AuthorizationService
+    private readonly UserContext _userContext;
+
+    public AuthorizationService(UserContext userContext)
     {
-        private readonly UserContext _userContext;
-
-        public AuthorizationService(UserContext userContext)
-        {
-            _userContext = userContext;
-        }
-
-        public bool IsAllowed(CustomerAction customerAction)
-        {
-            if (_userContext.Role == UserRole.Unknown)
-                return false;
-
-            // ...
-
-            return true;
-        }
+        _userContext = userContext;
     }
 
-    public enum CustomerAction
+    public bool IsAllowed(CustomerAction customerAction)
     {
-        ChangeEmail = 0,
-        MakePreferred = 1,
+        if (_userContext.Role == UserRole.Unknown)
+            return false;
+
         // ...
+
+        return true;
     }
+}
+
+public enum CustomerAction
+{
+    ChangeEmail = 0,
+    MakePreferred = 1,
+    // ...
 }

@@ -1,41 +1,40 @@
 using System;
 
-namespace WritingMaintainableUnitTests.Module4DecouplingPatterns.Expenses
+namespace WritingMaintainableUnitTests.Module4DecouplingPatterns.Expenses;
+
+public interface ICanApproveExpenses
 {
-    public interface ICanApproveExpenses
+    bool CanApprove(decimal amountToApprove);
+}
+
+public class HeadOfDepartment : ICanApproveExpenses
+{
+    private const decimal MaximumAmountToApprove = 1000m;
+
+    public Guid Id { get; }
+
+    public HeadOfDepartment(Guid id)
     {
-        bool CanApprove(decimal amountToApprove);
+        Id = id;
     }
 
-    public class HeadOfDepartment : ICanApproveExpenses
+    public bool CanApprove(decimal amountToApprove)
     {
-        private const decimal MaximumAmountToApprove = 1000m;
+        return amountToApprove <= MaximumAmountToApprove;
+    }
+}
 
-        public Guid Id { get; }
+public class ChiefFinancialOfficer : ICanApproveExpenses
+{
+    public Guid Id { get; }
 
-        public HeadOfDepartment(Guid id)
-        {
-            Id = id;
-        }
-
-        public bool CanApprove(decimal amountToApprove)
-        {
-            return amountToApprove <= MaximumAmountToApprove;
-        }
+    public ChiefFinancialOfficer(Guid id)
+    {
+        Id = id;
     }
 
-    public class ChiefFinancialOfficer : ICanApproveExpenses
+    public bool CanApprove(decimal amountToApprove)
     {
-        public Guid Id { get; }
-
-        public ChiefFinancialOfficer(Guid id)
-        {
-            Id = id;
-        }
-
-        public bool CanApprove(decimal amountToApprove)
-        {
-            return true;
-        }
+        return true;
     }
 }

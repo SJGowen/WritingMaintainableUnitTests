@@ -1,10 +1,9 @@
 using System;
 
-namespace WritingMaintainableUnitTests.Module6UnitTestPractices.Coupons
+namespace WritingMaintainableUnitTests.Module6UnitTestPractices.Coupons;
+
+public interface IClock
 {
-    public interface IClock
-    {
-        DateTime GetCurrentDate();
-        DateTime GetCurrentDateTime();
-    }
+    DateTime GetCurrentDate();
+    DateTime GetCurrentDateTime();
 }

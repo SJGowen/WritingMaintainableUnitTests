@@ -1,24 +1,23 @@
-﻿namespace WritingMaintainableUnitTests.Module3AnatomyOfUnitTests.ArrangeActAssert
+﻿namespace WritingMaintainableUnitTests.Module3AnatomyOfUnitTests.ArrangeActAssert;
+
+public class ApplicationRequest
 {
-    public class ApplicationRequest
+    public string Name { get; }
+    public ApplicationRequestStatus Status { get; private set; }
+
+    public ApplicationRequest(string firstName, string lastName)
     {
-        public string Name { get; }
-        public ApplicationRequestStatus Status { get; private set; }
-
-        public ApplicationRequest(string firstName, string lastName)
-        {
-            Name = $"{firstName} {lastName}";
-        }
-
-        public void Approve()
-        {
-            Status = ApplicationRequestStatus.Approved;
-        }
+        Name = $"{firstName} {lastName}";
     }
 
-    public enum ApplicationRequestStatus
+    public void Approve()
     {
-        Pending = 0,
-        Approved = 1
+        Status = ApplicationRequestStatus.Approved;
     }
+}
+
+public enum ApplicationRequestStatus
+{
+    Pending = 0,
+    Approved = 1
 }

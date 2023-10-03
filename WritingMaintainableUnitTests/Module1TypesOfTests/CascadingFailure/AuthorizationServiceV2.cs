@@ -1,30 +1,29 @@
-﻿namespace WritingMaintainableUnitTests.Module1TypesOfTests.CascadingFailure
+﻿namespace WritingMaintainableUnitTests.Module1TypesOfTests.CascadingFailure;
+
+public interface IAuthorizationService
 {
-    public interface IAuthorizationService
+    bool IsAllowed(CustomerAction customerAction);
+}
+
+public class AuthorizationServiceV2 : IAuthorizationService
+{
+    private readonly UserContext _userContext;
+
+    public AuthorizationServiceV2(UserContext userContext)
     {
-        bool IsAllowed(CustomerAction customerAction);
+        _userContext = userContext;
     }
 
-    public class AuthorizationServiceV2 : IAuthorizationService
+    public bool IsAllowed(CustomerAction customerAction)
     {
-        private readonly UserContext _userContext;
+        if (_userContext.Role == UserRole.Unknown)
+            return false;
 
-        public AuthorizationServiceV2(UserContext userContext)
-        {
-            _userContext = userContext;
-        }
+        if (_userContext.Role == UserRole.HelpDeskStaff && customerAction == CustomerAction.MakePreferred)
+            return false;
 
-        public bool IsAllowed(CustomerAction customerAction)
-        {
-            if (_userContext.Role == UserRole.Unknown)
-                return false;
+        // ...
 
-            if (_userContext.Role == UserRole.HelpDeskStaff && customerAction == CustomerAction.MakePreferred)
-                return false;
-
-            // ...
-
-            return true;
-        }
+        return true;
     }
 }

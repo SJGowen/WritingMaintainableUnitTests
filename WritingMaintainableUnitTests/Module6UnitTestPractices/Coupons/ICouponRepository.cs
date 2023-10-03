@@ -1,7 +1,6 @@
-namespace WritingMaintainableUnitTests.Module6UnitTestPractices.Coupons
+namespace WritingMaintainableUnitTests.Module6UnitTestPractices.Coupons;
+
+public interface ICouponRepository
 {
-    public interface ICouponRepository
-    {
-        void Save(Coupon coupon);
-    }
+    void Save(Coupon coupon);
 }

@@ -1,7 +1,6 @@
-namespace WritingMaintainableUnitTests.Module4DecouplingPatterns.Expenses
+namespace WritingMaintainableUnitTests.Module4DecouplingPatterns.Expenses;
+
+public interface ICommandHandler<TCommand>
 {
-    public interface ICommandHandler<TCommand>
-    {
-        Result Handle(TCommand command);
-    }
+    Result Handle(TCommand command);
 }

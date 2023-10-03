@@ -1,19 +1,18 @@
-﻿namespace WritingMaintainableUnitTests.Module1TypesOfTests.CascadingFailure
+﻿namespace WritingMaintainableUnitTests.Module1TypesOfTests.CascadingFailure;
+
+public class UserContext
 {
-    public class UserContext
-    {
-        public UserRole Role { get; }
+    public UserRole Role { get; }
 
-        public UserContext(UserRole role)
-        {
-            Role = role;
-        }
-    }
-
-    public enum UserRole
+    public UserContext(UserRole role)
     {
-        Unknown = 0,
-        HelpDeskStaff = 1,
-        BackOfficeManager = 2
+        Role = role;
     }
+}
+
+public enum UserRole
+{
+    Unknown = 0,
+    HelpDeskStaff = 1,
+    BackOfficeManager = 2
 }

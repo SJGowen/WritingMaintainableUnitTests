@@ -1,16 +1,15 @@
 using NUnit.Framework;
 
-namespace WritingMaintainableUnitTests.Tests.Common
-{
-    public class SpecificationAttribute : TestFixtureAttribute
-    {}
+namespace WritingMaintainableUnitTests.Tests.Common;
 
-    public class EstablishAttribute : OneTimeSetUpAttribute
-    {}
+public class SpecificationAttribute : TestFixtureAttribute
+{}
 
-    public class BecauseAttribute : OneTimeSetUpAttribute
-    {}
+public class EstablishAttribute : OneTimeSetUpAttribute
+{}
 
-    public class ObservationAttribute : TestAttribute
-    {}
-}
+public class BecauseAttribute : OneTimeSetUpAttribute
+{}
+
+public class ObservationAttribute : TestAttribute
+{}

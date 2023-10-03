@@ -1,8 +1,7 @@
-﻿namespace WritingMaintainableUnitTests.Module3AnatomyOfUnitTests.ArrangeActAssertPerTestMethodOrClass
+﻿namespace WritingMaintainableUnitTests.Module3AnatomyOfUnitTests.ArrangeActAssertPerTestMethodOrClass;
+
+public interface IUserRepository
 {
-    public interface IUserRepository
-    {
-        User GetByEmail(string email);
-        void Save(User user);
-    }
+    User GetByEmail(string email);
+    void Save(User user);
 }

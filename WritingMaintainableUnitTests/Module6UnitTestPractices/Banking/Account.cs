@@ -1,22 +1,21 @@
 using System;
 
-namespace WritingMaintainableUnitTests.Module6UnitTestPractices.Banking
+namespace WritingMaintainableUnitTests.Module6UnitTestPractices.Banking;
+
+public abstract class Account
 {
-    public abstract class Account
+    public string AccountName { get; private set; }
+
+    protected Account(string accountName)
     {
-        public string AccountName { get; private set; }
+        ChangeAccountName(accountName);
+    }
 
-        protected Account(string accountName)
-        {
-            ChangeAccountName(accountName);
-        }
+    public void ChangeAccountName(string newAccountName)
+    {
+        if (newAccountName.Length < 4)
+            throw new ArgumentException("Incorrect length for account name.");
 
-        public void ChangeAccountName(string newAccountName)
-        {
-            if (newAccountName.Length < 4)
-                throw new ArgumentException("Incorrect length for account name.");
-
-            AccountName = newAccountName;
-        }
+        AccountName = newAccountName;
     }
 }
