@@ -1,35 +1,34 @@
-﻿namespace WritingMaintainableUnitTests.Module1_TypesOfTests.BehaviourVerification
+﻿namespace WritingMaintainableUnitTests.Module1_TypesOfTests.BehaviourVerification;
+
+public class RegisterUserHandler
 {
-    public class RegisterUserHandler
-    {
-        private readonly IUserRepository _userRepository;
-        private readonly IEmailSender _emailSender;
+    private readonly IUserRepository _userRepository;
+    private readonly IEmailSender _emailSender;
 
-        public RegisterUserHandler(
-            IUserRepository userRepository,
-            IEmailSender emailSender)
-        {
-            _userRepository = userRepository;
-            _emailSender = emailSender;
-        }
-        
-        public void Handle(RegisterUser command)
-        {
-            var user = new User(command.Email);
-            _userRepository.Save(user);
-            
-            var emailMessage = new EmailMessage(user.Email, "Confirm email", "...");
-            _emailSender.Send(emailMessage);
-        }
+    public RegisterUserHandler(
+        IUserRepository userRepository,
+        IEmailSender emailSender)
+    {
+        _userRepository = userRepository;
+        _emailSender = emailSender;
     }
-
-    public class RegisterUser
+    
+    public void Handle(RegisterUser command)
     {
-        public string Email { get; }
+        var user = new User(command.Email);
+        _userRepository.Save(user);
         
-        public RegisterUser(string email)
-        {
-            Email = email;
-        }
+        var emailMessage = new EmailMessage(user.Email, "Confirm email", "...");
+        _emailSender.Send(emailMessage);
+    }
+}
+
+public class RegisterUser
+{
+    public string Email { get; }
+    
+    public RegisterUser(string email)
+    {
+        Email = email;
     }
 }

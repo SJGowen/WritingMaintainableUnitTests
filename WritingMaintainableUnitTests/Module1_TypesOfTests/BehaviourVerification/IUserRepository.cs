@@ -1,7 +1,6 @@
-﻿namespace WritingMaintainableUnitTests.Module1_TypesOfTests.BehaviourVerification
+﻿namespace WritingMaintainableUnitTests.Module1_TypesOfTests.BehaviourVerification;
+
+public interface IUserRepository
 {
-    public interface IUserRepository
-    {
-        void Save(User user);
-    }
+    void Save(User user);
 }
