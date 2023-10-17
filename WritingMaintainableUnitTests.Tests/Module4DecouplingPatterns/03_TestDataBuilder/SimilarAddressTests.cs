@@ -75,10 +75,13 @@ public class SimilarAddressTests
             marketStreetStoreAddress.WithStreetName("Sixth Ave").WithHouseNumber("212"),    // Sixth Ave 
             marketStreetStoreAddress.WithHouseNumber("709")    // Back to Market Street
         };
-        
+
+        Assert.That(storeAddresses.ElementAt(0).HouseNumber, Is.EqualTo("705"));
         Assert.That(storeAddresses.ElementAt(0).StreetName, Is.EqualTo("Market Street"));
+        Assert.That(storeAddresses.ElementAt(1).HouseNumber, Is.EqualTo("212"));
         Assert.That(storeAddresses.ElementAt(1).StreetName, Is.EqualTo("Sixth Ave"));
-        Assert.That(storeAddresses.ElementAt(2).StreetName, Is.EqualTo("Sixth Ave"));    // That's much better!!
+        Assert.That(storeAddresses.ElementAt(2).HouseNumber, Is.EqualTo("709"));
+        Assert.That(storeAddresses.ElementAt(2).StreetName, Is.EqualTo("Market Street"));    // That's much better!!
     }
 }
 
@@ -111,25 +114,21 @@ public class ImmutableAddressBuilder
 
     public ImmutableAddressBuilder WithStreetName(string streetName)
     {
-        _streetName = streetName;
         return new ImmutableAddressBuilder(streetName, _houseNumber, _postalCode, _city);
     }
 
     public ImmutableAddressBuilder WithHouseNumber(string houseNumber)
     {
-        _houseNumber = houseNumber;
         return new ImmutableAddressBuilder(_streetName, houseNumber, _postalCode, _city);
     }
 
     public ImmutableAddressBuilder WithPostalCode(string postalCode)
     {
-        _postalCode = postalCode;
         return new ImmutableAddressBuilder(_streetName, _houseNumber, postalCode, _city);
     }
 
     public ImmutableAddressBuilder WithCity(string city)
     {
-        _city = city;
         return new ImmutableAddressBuilder(_streetName, _houseNumber, _postalCode, city);
     }
 
